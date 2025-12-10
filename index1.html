@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>Simple Number Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input {
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" id="num1" placeholder="First number">
+
+    <input type="text" id="op" placeholder="+  -  *  /" maxlength="1">
+
+    <input type="text" id="num2" placeholder="Second number">
+
+    <button onclick="calculate()">=</button>
+
+    <input type="text" id="result" placeholder="Result" readonly>
+
+    <script>
+        function calculate() {
+            const n1 = parseFloat(document.getElementById('num1').value);
+            const n2 = parseFloat(document.getElementById('num2').value);
+            const op = document.getElementById('op').value;
+            let res;
+
+            if (isNaN(n1) || isNaN(n2)) {
+                res = 'Enter numbers';
+            } else if (op === '+') {
+                res = n1 + n2;
+            } else if (op === '-') {
+                res = n1 - n2;
+            } else if (op === '*') {
+                res = n1 * n2;
+            } else if (op === '/') {
+                res = n2 !== 0 ? n1 / n2 : 'Div by 0';
+            } else {
+                res = 'Bad op';
+            }
+
+            document.getElementById('result').value = res;
+        }
+    </script>
+</body>
+
+</html>
