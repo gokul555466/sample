@@ -1,56 +1,76 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Simple Number Calculator</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        input {
-            margin: 5px;
-            padding: 5px;
+        .error {
+            color: red;
+            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
 
-    <input type="text" id="num1" placeholder="First number">
+    <form id="form">
+        <input id="username" type="text" placeholder="Username">
+        <div id="userError" class="error"></div>
+        <hr>
+        <input id="email" type="text" placeholder="Email">
+        <div id="emailError" class="error"></div>
 
-    <input type="text" id="op" placeholder="+  -  *  /" maxlength="1">
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>Gokul</td>
+            <td>16</td>
+        </tr>
+    </table>
 
-    <input type="text" id="num2" placeholder="Second number">
+    <div style="background: lightgray;">Box</div>
 
-    <button onclick="calculate()">=</button>
+    <br>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="600" height="450" style="border:0;"
+        allowfullscreen>
+    </iframe>
 
-    <input type="text" id="result" placeholder="Result" readonly>
+    <br>
+    <iframe src="https://www.wikipedia.org" width="400" height="300"></iframe>
+
 
     <script>
-        function calculate() {
-            const n1 = parseFloat(document.getElementById('num1').value);
-            const n2 = parseFloat(document.getElementById('num2').value);
-            const op = document.getElementById('op').value;
-            let res;
+        document.getElementById("form").addEventListener("submit", function (e) {
+            e.preventDefault();   // stop form submission
 
-            if (isNaN(n1) || isNaN(n2)) {
-                res = 'Enter numbers';
-            } else if (op === '+') {
-                res = n1 + n2;
-            } else if (op === '-') {
-                res = n1 - n2;
-            } else if (op === '*') {
-                res = n1 * n2;
-            } else if (op === '/') {
-                res = n2 !== 0 ? n1 / n2 : 'Div by 0';
-            } else {
-                res = 'Bad op';
+            let user = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+
+            let userError = document.getElementById("userError");
+            let emailError = document.getElementById("emailError");
+
+            userError.textContent = "";
+            emailError.textContent = "";
+
+            if (user === "") {
+                userError.textContent = "Username is required";
+                return;
             }
 
-            document.getElementById('result').value = res;
-        }
+            if (!email.includes("@")) {
+                emailError.textContent = "Invalid email";
+                return;
+            }
+
+            alert("Form submitted!");
+        });
     </script>
+
 </body>
 
 </html>
